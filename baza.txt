@@ -1,0 +1,2 @@
+{"tytul": "jajecznica", "opis": ["1. posmaruj patelnie maslem", "2. wbij 3 jajka", "3. dopraw wedlug uznania", "4. na srednim ogniu smaz", "5. gotowe"], "skladniki": ["3 jajka", "s\u00f3l i pieprz", "maslo"]}
+{"tytul": "jajecznica", "opis": ["1. posmaruj patelnie maslem", "2. wbij 3 jajka", "3. dopraw wedlug uznania", "4. na srednim ogniu smaz", "5. gotowe"], "skladniki": ["3 jajka", "s\u00f3l i pieprz", "maslo"]}
