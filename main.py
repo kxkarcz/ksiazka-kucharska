@@ -58,10 +58,64 @@ class Ksiazka_kucharska(Baza_danych):
         for i in self.przepisy:
             i.wypisz()
     def wyszukaj(self,nazwa_przepisu):
-        pass
+        with io.open(self.nazwa_pliku, 'r', encoding='utf8') as f:
+            text = f.read()
+            text = text.split("\n")
+            dlugosc=nazwa_przepisu.__len__()
+            for i in text:
+                dl= len(i)
+                if (i[11:(-dl+11+dlugosc)]==nazwa_przepisu):
+                    print(i)
+
     def dodaj_przepis(self):
-        pass
+        with io.open(self.nazwa_pliku, 'r', encoding='utf8') as f:
+            text = f.read()
+            tytul=input("Podaj tytuł: ")
+            print("Podaj skladniki, jeśli to wszystkie napisz koniec: ")
+            skladniki=[]
+            while(True):
+                a=input()
+                if (a=="koniec" or a=="Koniec"):
+                    break
+                else:
+                    skladniki.append(a)
+            print("Podaj kroki, jeśli to wszystkie napisz koniec: ")
+            kroki=[]
+            while(True):
+                a=input()
+                if (a=="koniec" or a=="Koniec"):
+                    break
+                else:
+                    kroki.append(a)
+            przepis={"tytul":tytul,"opis":kroki,"skladniki":skladniki}
+            napis=""
+            napis+=str(text)
+            napis+="\n"+str(przepis)
+            with io.open(self.nazwa_pliku, 'w', encoding='utf8') as f:
+                f.write(str(napis))
+
     def usun_przepis(self,nazwa_przepisu):
-        pass
+        with io.open(self.nazwa_pliku, 'r', encoding='utf8') as f:
+            text = f.read()
+            text = text.split("\n")
+            dlugosc=nazwa_przepisu.__len__()
+            napis=""
+            for i in text:
+                dl= len(i)
+                a=i.split("\n")
+                for k in a:
+                    if (k[11:(-dl + 11 + dlugosc)] == nazwa_przepisu):
+                        continue
+                    else:
+                        napis+=k
+            with io.open(self.nazwa_pliku, 'w', encoding='utf8') as f:
+                f.write(napis)
+
+
+
+
 ksiaz_kucharska=Ksiazka_kucharska()
 ksiaz_kucharska.zapis()
+ksiaz_kucharska.wyszukaj("jajecznica")
+ksiaz_kucharska.dodaj_przepis()
+ksiaz_kucharska.usun_przepis("platki")
